@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            padding: 15vh 8vw;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgb(17, 176, 176);
+            padding: 5vw;
+        }
+
+        .input-div {
+            display: inline-block;
+        }
+
+        .inp {
+            padding: 0.5vw 1vw;
+            margin: 1vw;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            width: 17vw;
+        }
+        label{
+            font-size: 3vh;
+            background-color: rgb(17, 176, 176);
+            color: rgb(245, 245, 239);
+             
+        }
+        #temp{
+            font-size: 3vh;
+            background-color: rgb(17, 176, 176);
+            color: rgb(245, 245, 239);
+             border: 1px solid wheat;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Temperature converter</h1>
+    <div class="container">
+        <div class="input-div">
+                 <label>Celsius</label>
+             <br>
+            <input type="number" value="0" id="cel" class="inp">
+        </div>
+        <div class="input-div">
+             <select name="temp" id="temp">
+                <option value="select">SELECT</option>
+                <option value="fahrenhite">Fahrenhite</option>
+                <option value="kelvin">Kelvin</option>
+             </select>
+            <br>
+            <input type="number" value="0" id="fah" class="inp">
+        </div>
+    </div>
+    
+    <script>
+        var temp = document.getElementById("temp");
+        var cel = document.getElementById("cel");
+        var fah = document.getElementById("fah");
+     
+        temp.addEventListener("change",function(){
+            if(temp.value=="fahrenhite"){
+                // function to change celsius to fahrenhite
+                cel.addEventListener("input",function(){
+                    let c = this.value;
+                    let f = (c * 9/5) + 32;
+                    if(!Number.isInteger(f)){
+                    f = f.toFixed(4);
+                    }
+                    fah.value = f;
+                })
+                // function to change fahrenhite to celsius
+                fah.addEventListener("input",function(){
+                    let f = this.value;
+                    let c = (f-32) * 5/9;
+                    if(!Number.isInteger(c)){
+                    c = c.toFixed(4);
+                    }
+                    cel.value = c; 
+                })
+            }
+            if(temp.value=="kelvin"){
+          // function to change celsius to kelvin
+                cel.addEventListener("input",function(){
+                    var c =  parseFloat(this.value);
+                    c = c + 273.15;
+                    fah.value = c;
+                })
+                // function to change kelvin to celsius
+                fah.addEventListener("input",function(){
+                    let k = this.value;
+                    let c = k - 273.15 ;
+                    if(!Number.isInteger(k)){
+                    c = c.toFixed(4);
+                    }
+                    cel.value = c;
+                })
+            }
+        })
+
+
+
+
+
+        // cel.addEventListener("input",function(){
+        //     let c = this.value;
+        //     let f = (c * 9/5) + 32;
+        //     if(!Number.isInteger(f)){
+        //     f = f.toFixed(4);
+        //     }
+        //     fah.value = f;
+        // })
+        // fah.addEventListener("input",function(){
+        //     let f = this.value;
+        //     let c = (f-32) * 5/9;
+        //     if(!Number.isInteger(c)){
+        //     c = c.toFixed(4);
+        //     }
+        //     cel.value = c; 
+        // })
+        
+    </script>
+</body>
+
+</html>
